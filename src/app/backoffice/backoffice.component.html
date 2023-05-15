@@ -1,0 +1,60 @@
+<div>
+    <div>
+        <form action="" [formGroup]="projectForm">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Id Project</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1234" formControlName="idProject">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Description</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Description" formControlName="description">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Project name" formControlName="name">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Preview Img</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="https://image.url/" formControlName="previewImg">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">URL Repo</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="https://repository.url/" formControlName="urlRepo">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">URL Site</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="https://site.url/" formControlName="urlSite">
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" (click)="createProject()">Primary</button>
+            </div>
+        </form>
+    </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id Project</th>
+            <th scope="col">Description</th>
+            <th scope="col">Name</th>
+            <th scope="col">Preview Img</th>
+            <th scope="col">URL Repo</th>
+            <th scope="col">URL Site</th>
+            <th scope="col">URL Site</th>
+            <th scope="col">URL Site</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of projects">
+            <th scope="row">{{ i.idProject }}</th>
+            <td>{{ i.description }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.previewImg }}</td>
+            <td>{{ i.urlRepo }}</td>
+            <td>{{ i.urlSite }}</td>
+            <td><button type="button" class="btn btn-primary">Primary</button></td>
+            <td><button type="button" class="btn btn-primary" (click)="deleteProject(i.idProject!)">Delete</button></td>
+          </tr>
+        </tbody>
+    </table>
+</div>
