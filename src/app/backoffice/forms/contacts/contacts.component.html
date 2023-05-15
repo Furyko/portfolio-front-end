@@ -1,0 +1,96 @@
+<!--Right side-->
+<div class="right col-lg-8 col-12">
+    <section class="section mb-4">
+        <div class="card shadow-sm rounded p-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                Crear contacto
+            </button>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id Contact</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">url</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of contacts">
+                        <th scope="row">{{ i.idContact }}</th>
+                        <td>{{ i.data }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.url }}</td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                        <td><button type="button" class="btn btn-primary" (click)="deleteContact(i.idContact!)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Create Project Modal -->
+            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo conocimiento</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="" [formGroup]="contactForm">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Id Contact" aria-label="idContact" aria-describedby="basic-addon1" formControlName="idContact">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Text" aria-label="data" aria-describedby="basic-addon1" formControlName="data">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1" formControlName="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Url" aria-label="url" aria-describedby="basic-addon1" formControlName="url">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="createContact()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Update Project Modal -->
+            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar contacto existente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="" [formGroup]="updateContactForm">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Id Contact" aria-label="idContact" aria-describedby="basic-addon1" formControlName="idContact">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Text" aria-label="data" aria-describedby="basic-addon1" formControlName="data">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1" formControlName="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Url" aria-label="url" aria-describedby="basic-addon1" formControlName="url">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="updateContact()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
