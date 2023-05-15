@@ -16,6 +16,7 @@ import { BackofficeNavComponent } from './components/backoffice-nav/backoffice-n
 import { KnowledgeComponent } from './components/knowledge/knowledge.component';
 import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.component';
 import { ExtraProjectComponent } from './components/extra-project/extra-project.component';
+import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-projects.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ExtraProjectComponent } from './components/extra-project/extra-project.
     ProjectsComponent,
     KnowledgeComponent,
     KnowledgesComponent,
-    ExtraProjectComponent
+    ExtraProjectComponent,
+    ExtraProjectsComponent
   ],
   imports: [
     BrowserModule,
