@@ -11,10 +11,19 @@ import { ProjectService } from 'src/app/services/project.service';
 export class BackofficeComponent {
   projects: Array<Project>
   projectForm: FormGroup
+  updateProjectForm: FormGroup
 
   constructor(private fb: FormBuilder, private pService: ProjectService){
     this.projects = new Array<Project>()
     this.projectForm = fb.group({
+      idProject: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      previewImg: new FormControl('', [Validators.required]),
+      urlRepo: new FormControl('', [Validators.required]),
+      urlSite: new FormControl('', [Validators.required]),
+    })
+    this.updateProjectForm = fb.group({
       idProject: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -56,4 +65,32 @@ export class BackofficeComponent {
   }
 
   //Update projects
+  updateProject(){
+    if(this.updateProjectForm.valid){
+      let project = new Project()
+      project.idProject = this.updateProjectForm.get('idProject')?.value
+      project.description = this.updateProjectForm.get('description')?.value
+      project.name = this.updateProjectForm.get('name')?.value
+      project.previewImg = this.updateProjectForm.get('previewImg')?.value
+      project.urlRepo = this.updateProjectForm.get('urlRepo')?.value
+      project.urlSite = this.updateProjectForm.get('urlSite')?.value
+      this.pService.updateProject(project).subscribe(res => {
+        this.getProjects()
+      })
+    }
+  }
+
+  setUpdateFormValues(project: Project){
+    this.updateProjectForm.get('idProject')?.disable()
+    this.updateProjectForm.get('idProject')?.setValue(project.idProject)
+    this.updateProjectForm.get('description')?.setValue(project.description)
+    this.updateProjectForm.get('name')?.setValue(project.name)
+    this.updateProjectForm.get('previewImg')?.setValue(project.previewImg)
+    this.updateProjectForm.get('urlRepo')?.setValue(project.urlRepo)
+    this.updateProjectForm.get('urlSite')?.setValue(project.urlSite)
+  }
+
+  ngOnInit(){
+    this.getProjects()
+  }
 }
