@@ -13,6 +13,7 @@ import { StudyComponent } from './components/study/study.component';
 import { StudiesComponent } from './backoffice/forms/studies/studies.component';
 import { ProjectsComponent } from './backoffice/forms/projects/projects.component';
 import { BackofficeNavComponent } from './components/backoffice-nav/backoffice-nav.component';
+import { KnowledgeComponent } from './components/knowledge/knowledge.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BackofficeNavComponent } from './components/backoffice-nav/backoffice-n
     StudyComponent,
     StudiesComponent,
     BackofficeNavComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    KnowledgeComponent
   ],
   imports: [
     BrowserModule,
