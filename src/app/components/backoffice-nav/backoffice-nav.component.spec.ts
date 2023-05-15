@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectComponent } from './projects.component';
+import { BackofficeNavComponent } from './backoffice-nav.component';
 
-describe('ProjectComponent', () => {
-  let component: ProjectComponent;
-  let fixture: ComponentFixture<ProjectComponent>;
+describe('BackofficeNavComponent', () => {
+  let component: BackofficeNavComponent;
+  let fixture: ComponentFixture<BackofficeNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectComponent ]
+      declarations: [ BackofficeNavComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProjectComponent);
+    fixture = TestBed.createComponent(BackofficeNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

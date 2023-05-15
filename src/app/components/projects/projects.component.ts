@@ -3,11 +3,11 @@ import { Project } from 'src/app/models/Project';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-project',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent {
+export class ProjectComponent {
   projects: Array<Project>
 
   constructor(private pService: ProjectService){

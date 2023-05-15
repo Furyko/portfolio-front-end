@@ -1,0 +1,114 @@
+<!--Right side-->
+<div class="right col-lg-8 col-12">
+    <section class="section mb-4">
+        <div class="card shadow-sm rounded p-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                Crear proyecto
+            </button>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id Project</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Preview Img</th>
+                        <th scope="col">URL Repo</th>
+                        <th scope="col">URL Site</th>
+                        <th scope="col">URL Site</th>
+                        <th scope="col">URL Site</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of projects">
+                        <th scope="row">{{ i.idProject }}</th>
+                        <td>{{ i.description }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.previewImg }}</td>
+                        <td>{{ i.urlRepo }}</td>
+                        <td>{{ i.urlSite }}</td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                        <td><button type="button" class="btn btn-primary" (click)="deleteProject(i.idProject!)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Create Project Modal -->
+            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo proyecto</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="" [formGroup]="projectForm">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Id Project" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Description" aria-label="idProject" aria-describedby="basic-addon1" formControlName="description">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Project name" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Preview Img (https://image.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="URL Repo (https://repository.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="URL Site (https://site.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="createProject()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Update Project Modal -->
+            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar proyecto existente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="" [formGroup]="updateProjectForm">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Id Project" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Description" aria-label="idProject" aria-describedby="basic-addon1" formControlName="description">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Project name" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Preview Img (https://image.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="URL Repo (https://repository.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="URL Site (https://site.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="updateProject()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

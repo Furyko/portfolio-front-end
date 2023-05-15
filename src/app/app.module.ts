@@ -5,20 +5,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectComponent } from './components/projects/projects.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { BackofficeComponent } from './backoffice/backoffice.component';
 import { StudyComponent } from './components/study/study.component';
+import { StudiesComponent } from './backoffice/forms/studies/studies.component';
+import { ProjectsComponent } from './backoffice/forms/projects/projects.component';
+import { BackofficeNavComponent } from './components/backoffice-nav/backoffice-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsComponent,
+    ProjectComponent,
     HomeComponent,
     LoginComponent,
     BackofficeComponent,
-    StudyComponent
+    StudyComponent,
+    StudiesComponent,
+    BackofficeNavComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
