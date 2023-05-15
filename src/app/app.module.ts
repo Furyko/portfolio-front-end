@@ -17,6 +17,7 @@ import { KnowledgeComponent } from './components/knowledge/knowledge.component';
 import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.component';
 import { ExtraProjectComponent } from './components/extra-project/extra-project.component';
 import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-projects.component';
+import { ExperienceComponent } from './components/experience/experience.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-
     KnowledgeComponent,
     KnowledgesComponent,
     ExtraProjectComponent,
-    ExtraProjectsComponent
+    ExtraProjectsComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
