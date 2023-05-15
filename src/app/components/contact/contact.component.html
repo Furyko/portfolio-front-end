@@ -1,0 +1,9 @@
+<div class="info-title" id="contactar">
+    <h4 class="title">Contacto</h4>
+    <ul>
+        <li *ngFor="let i of contacts">{{ i.name }}: 
+            <a *ngIf="i.url != '' else elseBlock" [href]="i.url" target="_blank">{{ i.data }}</a>
+            <ng-template #elseBlock>{{ i.data }}</ng-template>
+        </li>
+    </ul>
+</div>

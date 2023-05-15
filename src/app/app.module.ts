@@ -19,6 +19,7 @@ import { ExtraProjectComponent } from './components/extra-project/extra-project.
 import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-projects.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ExperiencesComponent } from './backoffice/forms/experiences/experiences.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ExperiencesComponent } from './backoffice/forms/experiences/experiences
     ExtraProjectComponent,
     ExtraProjectsComponent,
     ExperienceComponent,
-    ExperiencesComponent
+    ExperiencesComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
