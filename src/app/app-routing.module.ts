@@ -7,6 +7,7 @@ import { ProjectsComponent } from './backoffice/forms/projects/projects.componen
 import { StudiesComponent } from './backoffice/forms/studies/studies.component';
 import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.component';
 import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-projects.component';
+import { ExperiencesComponent } from './backoffice/forms/experiences/experiences.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'projects', component: ProjectsComponent },
       { path: 'extra-projects', component: ExtraProjectsComponent },
       { path: 'studies', component: StudiesComponent },
-      { path: 'knowledges', component: KnowledgesComponent }
+      { path: 'knowledges', component: KnowledgesComponent },
+      { path: 'experiences', component: ExperiencesComponent }
     ]
   }
 ];
