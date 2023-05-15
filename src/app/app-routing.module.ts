@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { BackofficeComponent } from './backoffice/backoffice.component';
 import { ProjectsComponent } from './backoffice/forms/projects/projects.component';
 import { StudiesComponent } from './backoffice/forms/studies/studies.component';
+import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
     component: BackofficeComponent, 
     children: [
       { path: 'projects', component: ProjectsComponent },
-      { path: 'studies', component: StudiesComponent }
+      { path: 'studies', component: StudiesComponent },
+      { path: 'knowledges', component: KnowledgesComponent }
     ]
   }
 ];

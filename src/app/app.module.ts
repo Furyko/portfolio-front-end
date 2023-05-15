@@ -14,6 +14,7 @@ import { StudiesComponent } from './backoffice/forms/studies/studies.component';
 import { ProjectsComponent } from './backoffice/forms/projects/projects.component';
 import { BackofficeNavComponent } from './components/backoffice-nav/backoffice-nav.component';
 import { KnowledgeComponent } from './components/knowledge/knowledge.component';
+import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { KnowledgeComponent } from './components/knowledge/knowledge.component';
     StudiesComponent,
     BackofficeNavComponent,
     ProjectsComponent,
-    KnowledgeComponent
+    KnowledgeComponent,
+    KnowledgesComponent
   ],
   imports: [
     BrowserModule,
