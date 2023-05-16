@@ -6,7 +6,7 @@ import { AboutMe } from '../models/AboutMe';
   providedIn: 'root'
 })
 export class AboutMeService {
-  rutaGlobal = "http://localhost:8080/about-me/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/about-me/"
 
   constructor(private http: HttpClient) { }
 
