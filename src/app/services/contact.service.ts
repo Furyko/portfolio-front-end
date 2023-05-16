@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ContactService {
-  rutaGlobal = `${environment.url}/contact`
+  rutaGlobal = `${environment.url}/contact/`
 
   constructor(private http: HttpClient) { }
 

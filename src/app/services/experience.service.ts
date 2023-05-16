@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ExperienceService {
-  rutaGlobal = `${environment.url}/experience`
+  rutaGlobal = `${environment.url}/experience/`
 
   constructor(private http: HttpClient) { }
 

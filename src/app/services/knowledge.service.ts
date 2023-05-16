@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class KnowledgeService {
-  rutaGlobal = `${environment.url}/knowledge`
+  rutaGlobal = `${environment.url}/knowledge/`
 
   constructor(private http: HttpClient) { }
 
