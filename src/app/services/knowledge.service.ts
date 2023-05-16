@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Knowledge } from '../models/Knowledge';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KnowledgeService {
-  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/knowledge/"
+  rutaGlobal = `${environment.url}/knowledge`
 
   constructor(private http: HttpClient) { }
 

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Contact } from '../models/Contact';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
-  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/contact/"
+  rutaGlobal = `${environment.url}/contact`
 
   constructor(private http: HttpClient) { }
 

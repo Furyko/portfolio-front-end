@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AboutMe } from '../models/AboutMe';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutMeService {
-  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/about-me/"
+  rutaGlobal = `${environment.url}/about-me`
 
   constructor(private http: HttpClient) { }
 
