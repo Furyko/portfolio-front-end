@@ -6,7 +6,7 @@ import { Knowledge } from '../models/Knowledge';
   providedIn: 'root'
 })
 export class KnowledgeService {
-  rutaGlobal = "http://localhost:8080/knowledge/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/knowledge/"
 
   constructor(private http: HttpClient) { }
 

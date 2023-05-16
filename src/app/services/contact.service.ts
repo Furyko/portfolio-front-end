@@ -6,7 +6,7 @@ import { Contact } from '../models/Contact';
   providedIn: 'root'
 })
 export class ContactService {
-  rutaGlobal = "http://localhost:8080/contact/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/contact/"
 
   constructor(private http: HttpClient) { }
 

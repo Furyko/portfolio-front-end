@@ -6,7 +6,7 @@ import { Study } from '../models/Study';
   providedIn: 'root'
 })
 export class StudyService {
-  rutaGlobal = "http://localhost:8080/study/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/study/"
 
   constructor(private http: HttpClient) { }
 

@@ -6,7 +6,7 @@ import { Project } from '../models/Project';
   providedIn: 'root'
 })
 export class ProjectService {
-  rutaGlobal = "http://localhost:8080/project/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/project/"
 
   constructor(private http: HttpClient) { }
 

@@ -6,7 +6,7 @@ import { Experience } from '../models/Experience';
   providedIn: 'root'
 })
 export class ExperienceService {
-  rutaGlobal = "http://localhost:8080/experience/"
+  rutaGlobal = "https://portfolio-back-end-wmxk.onrender.com/experience/"
 
   constructor(private http: HttpClient) { }
 
