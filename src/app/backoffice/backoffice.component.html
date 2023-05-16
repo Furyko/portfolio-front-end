@@ -36,4 +36,8 @@
 
     <router-outlet></router-outlet>
 </div>
-<ng-template #elseBlock>You need to be logged in to enter this page</ng-template>
+<ng-template #elseBlock>
+  <h2>You need to be logged in to enter this page</h2>
+  <button class="btn btn-primary" routerLink="/login">Iniciar sesión</button>
+  <button class="btn btn-secondary" routerLink="/home">Volver al inicio</button>
+</ng-template>
