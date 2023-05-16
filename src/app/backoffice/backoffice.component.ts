@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Project } from 'src/app/models/Project';
 import { ProjectService } from 'src/app/services/project.service';
+import { UserLoginService } from '../services/user-login.service';
+import { User } from '../models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-backoffice',
@@ -12,8 +15,10 @@ export class BackofficeComponent {
   projects: Array<Project>
   projectForm: FormGroup
   updateProjectForm: FormGroup
+  authenticated: Boolean
 
-  constructor(private fb: FormBuilder, private pService: ProjectService){
+  constructor(private fb: FormBuilder, private pService: ProjectService, private userLoginService: UserLoginService, private router: Router){
+    this.authenticated = false
     this.projects = new Array<Project>()
     this.projectForm = fb.group({
       idProject: new FormControl('', [Validators.required]),
@@ -31,6 +36,26 @@ export class BackofficeComponent {
       urlRepo: new FormControl('', [Validators.required]),
       urlSite: new FormControl('', [Validators.required]),
     })
+  }
+
+  // Login validation
+  isLogged(){
+    let user = new User()
+    user.userId = `${sessionStorage.getItem('userId')}`
+    user.password = `${sessionStorage.getItem('password')}`
+    this.userLoginService.userLogin(user).subscribe(data => {
+      this.authenticated = true
+    }, error => {
+      this.authenticated = false
+    })
+  }
+
+  // Logout function
+  logoutUser() {
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('password')
+    this.router.navigate(['/home']);
+
   }
 
   //Create project
@@ -91,6 +116,7 @@ export class BackofficeComponent {
   }
 
   ngOnInit(){
+    this.isLogged()
     this.getProjects()
   }
 }

@@ -1,4 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="authenticated else elseBlock">
+  <button class="btn btn-primary" routerLink="/home">Volver al inicio</button>
+  <button class="btn btn-secondary" (click)="logoutUser()">Logout</button>
     <div class="row">
         <!--Left side-->
       <div class="left col-lg-4 col-12">
@@ -34,3 +36,4 @@
 
     <router-outlet></router-outlet>
 </div>
+<ng-template #elseBlock>You need to be logged in to enter this page</ng-template>
