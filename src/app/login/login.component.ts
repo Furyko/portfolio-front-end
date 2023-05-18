@@ -34,6 +34,10 @@ export class LoginComponent {
     })
   }
 
+  goToHome(){
+    this.router.navigate(['/home']);
+  }
+
   ngOnInit(){
     this.isLogged()
   }

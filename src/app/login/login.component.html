@@ -22,7 +22,7 @@
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                                 <form (ngSubmit)="userLogin()" class="needs-validation" novalidate="" autocomplete="off">
                                     <div class="mb-3">
-                                        <label class="mb-2 text-muted" for="email">E-Mail Address</label>
+                                        <label class="mb-2 text-muted" for="email">Usuario</label>
                                         <input id="email" type="email" class="form-control" name="email" value="" required autofocus [(ngModel)]="user.userId">
                                         <div class="invalid-feedback">
                                             Email is invalid
@@ -30,10 +30,10 @@
                                     </div>
                                     <div class="mb-3">
                                         <div class="mb-2 w-100">
-                                            <label class="text-muted" for="password">Password</label>
-                                            <a href="forgot.html" class="float-end">
+                                            <label class="text-muted" for="password">Contraseña</label>
+                                            <!--<a href="forgot.html" class="float-end">
                                                 Forgot Password?
-                                            </a>
+                                            </a>-->
                                         </div>
                                         <input id="password" type="password" class="form-control" name="password" required [(ngModel)]="user.password">
                                         <div class="invalid-feedback">
@@ -41,16 +41,19 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <div class="form-check">
+                                        <!--<div class="form-check">
                                             <input type="checkbox" name="remember" id="remember" class="form-check-input">
                                             <label for="remember" class="form-check-label">Remember Me</label>
-                                        </div>
+                                        </div>-->
                                         <button type="submit" class="btn btn-primary ms-auto">
                                             Login
                                         </button>
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                        <div class="text-center my-5">
+                            <button type="submit" class="btn btn-info ms-auto" (click)="goToHome()">Volver al home</button>
                         </div>
                     </div>
                 </div>
