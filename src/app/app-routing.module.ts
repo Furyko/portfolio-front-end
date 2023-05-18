@@ -9,6 +9,7 @@ import { KnowledgesComponent } from './backoffice/forms/knowledges/knowledges.co
 import { ExtraProjectsComponent } from './backoffice/forms/extra-projects/extra-projects.component';
 import { ExperiencesComponent } from './backoffice/forms/experiences/experiences.component';
 import { ContactsComponent } from './backoffice/forms/contacts/contacts.component';
+import { AboutMeFormComponent } from './backoffice/forms/about-me-form/about-me-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'backoffice', 
     component: BackofficeComponent, 
     children: [
+      { path: 'about-me', component: AboutMeFormComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'extra-projects', component: ExtraProjectsComponent },
       { path: 'studies', component: StudiesComponent },

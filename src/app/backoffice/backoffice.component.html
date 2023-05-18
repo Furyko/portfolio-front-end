@@ -1,41 +1,64 @@
 <div class="container mt-5" *ngIf="authenticated else elseBlock">
-  <button class="btn btn-primary" routerLink="/home">Volver al inicio</button>
-  <button class="btn btn-secondary" (click)="logoutUser()">Logout</button>
-    <div class="row">
-        <!--Left side-->
-      <div class="left col-lg-4 col-12">
-        <aside class="aside section mb-4">
-          <div class="card shadow-sm rounded">
-            <div class="content p-4">
-                <!--Left side-->
-                <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/projects">
-                        Projects
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/extra-projects">
-                      Extra Projects
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/studies">
-                        Studies
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/knowledges">
-                      Knowledges
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/experiences">
-                      Experiences
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/contacts">
-                      Contacts
-                    </button>
-                </div>
-            </div>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="row">
+      <!--Left side-->
+    <div class="left col-lg-4 col-12">
+      <aside class="aside section mb-4">
+        <div class="card shadow-sm rounded">
+          <div class="content p-4">
+              <!--Left side-->
+              <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/about-me">
+                  About me
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/projects">
+                  Projects
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/extra-projects">
+                  Extra Projects
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/studies">
+                  Studies
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/knowledges">
+                  Knowledges
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/experiences">
+                  Experiences
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" routerLinkActive="active" routerLink="/backoffice/contacts">
+                  Contacts
+                </button>
+              </div>
           </div>
-        </aside>
+        </div>
+      </aside>
+    </div>
+
+    <div class="col-12 col-md-3 mb-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="px-xl-3">
+            <button class="btn btn-block btn-primary" routerLink="/home">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span> Volver al inicio</span>
+            </button>
+          </div>
+          <div class="px-xl-3">
+            <button class="btn btn-block btn-secondary" (click)="logoutUser()">
+              <i class="fa fa-sign-out"></i>
+              <span> Logout</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <router-outlet></router-outlet>
+  </div>
 </div>
+<router-outlet></router-outlet>
+
+
 <ng-template #elseBlock>
   <h2>You need to be logged in to enter this page</h2>
   <button class="btn btn-primary" routerLink="/login">Iniciar sesión</button>
