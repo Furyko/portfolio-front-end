@@ -9,20 +9,20 @@
                 <thead>
                     <tr>
                         <th scope="col">Id Project</th>
-                        <th scope="col">Description</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Preview Img</th>
                         <th scope="col">URL Repo</th>
                         <th scope="col">URL Site</th>
-                        <th scope="col">URL Site</th>
-                        <th scope="col">URL Site</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let i of projects">
                         <th scope="row">{{ i.idProject }}</th>
-                        <td>{{ i.description }}</td>
                         <td>{{ i.name }}</td>
+                        <td>{{ i.description }}</td>
                         <td>{{ i.previewImg }}</td>
                         <td>{{ i.urlRepo }}</td>
                         <td>{{ i.urlSite }}</td>

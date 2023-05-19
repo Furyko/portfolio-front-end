@@ -7,7 +7,10 @@
         <div id="carouselExampleFade" class="carousel slide carousel-fade mt-3" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" *ngFor="let i of projects">
-                    <img [src]="i.previewImg" class="d-block w-100" alt="Proyectos">
+                    <img *ngIf="i.previewImg != '' else elseBlock" [src]="i.previewImg" class="d-block w-100" alt="Proyectos">
+                    <ng-template #elseBlock>
+                        <img [src]="'https://via.assets.so/img.jpg?w=686&h=320&tc=Black&bg=gray&t='+i.name" class="d-block w-100" alt="Proyectos">
+                    </ng-template>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -28,13 +31,13 @@
                         <h5>{{ i.name }}</h5>
                         <p>{{ i.description }}</p>
                     </div>
-                    <div class="text-center col">
+                    <div *ngIf="i.previewImg != ''" class="text-center col">
                         <img [src]="i.previewImg" width="100%">
                     </div>
                 </div>
                 <div class="mt-2">
                     <a [href]="i.urlRepo" target="_blank"><button class="btn btn-primary me-2">Ver el repositorio</button></a>
-                    <a [href]="i.urlSite" target="_blank"><button class="btn btn-info">Ver el sitio</button></a>
+                    <a *ngIf="i.urlSite != ''" [href]="i.urlSite" target="_blank"><button class="btn btn-info">Ver el sitio</button></a>
                 </div>
             </div>
         </div>

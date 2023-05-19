@@ -19,17 +19,17 @@ export class ProjectsComponent {
       idProject: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      previewImg: new FormControl('', [Validators.required]),
+      previewImg: new FormControl(''),
       urlRepo: new FormControl('', [Validators.required]),
-      urlSite: new FormControl('', [Validators.required]),
+      urlSite: new FormControl(''),
     })
     this.updateProjectForm = fb.group({
       idProject: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      previewImg: new FormControl('', [Validators.required]),
+      previewImg: new FormControl(''),
       urlRepo: new FormControl('', [Validators.required]),
-      urlSite: new FormControl('', [Validators.required]),
+      urlSite: new FormControl(''),
     })
   }
 
