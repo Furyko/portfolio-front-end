@@ -20,10 +20,10 @@
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <form (ngSubmit)="userLogin()" class="needs-validation" novalidate="" autocomplete="off">
+                                <form (ngSubmit)="userLogin()" class="needs-validation" novalidate="" autocomplete="off" [formGroup]="loginForm">
                                     <div class="mb-3">
                                         <label class="mb-2 text-muted" for="email">Usuario</label>
-                                        <input id="email" type="email" class="form-control" name="email" value="" required autofocus [(ngModel)]="user.userId">
+                                        <input id="email" type="email" class="form-control" name="email" value="" formControlName="userId" required autofocus [(ngModel)]="user.userId">
                                         <div class="invalid-feedback">
                                             Email is invalid
                                         </div>
@@ -35,10 +35,13 @@
                                                 Forgot Password?
                                             </a>-->
                                         </div>
-                                        <input id="password" type="password" class="form-control" name="password" required [(ngModel)]="user.password">
+                                        <input id="password" type="password" class="form-control" formControlName="password" name="password" required [(ngModel)]="user.password">
                                         <div class="invalid-feedback">
                                             Password is required
                                         </div>
+                                    </div>
+                                    <div class="mb-3" *ngIf="error">
+                                        <label class="text-danger">El correo o la contraseña son incorrectos</label>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <!--<div class="form-check">

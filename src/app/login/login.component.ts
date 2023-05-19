@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../models/User';
 import { UserLoginService } from '../services/user-login.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   user: User = new User();
+  loginForm: FormGroup
+  error: Boolean
 
-  constructor(private userLoginService: UserLoginService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userLoginService: UserLoginService, private router: Router) {
+    this.loginForm = fb.group({
+      userId: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    })
+    this.error = false
+  }
 
   // Login validation
   isLogged(){
@@ -25,13 +33,18 @@ export class LoginComponent {
   }
 
   userLogin(){
-    this.userLoginService.userLogin(this.user).subscribe(data => {
-      sessionStorage.setItem('userId', `${this.user.userId}`);
-      sessionStorage.setItem('password', `${this.user.password}`);
-      this.router.navigate(['/backoffice']);
-    }, error => {
-      alert("Please enter a correct username and password")
-    })
+    if(this.loginForm.valid){
+      let user = new User()
+      user.userId = this.loginForm.get('userId')?.value
+      user.password = this.loginForm.get('password')?.value
+      this.userLoginService.userLogin(this.user).subscribe(res => {
+        sessionStorage.setItem('userId', `${this.user.userId}`);
+        sessionStorage.setItem('password', `${this.user.password}`);
+        this.router.navigate(['/backoffice']);
+      }, error => {
+        this.error = true
+      })
+    }
   }
 
   goToHome(){
