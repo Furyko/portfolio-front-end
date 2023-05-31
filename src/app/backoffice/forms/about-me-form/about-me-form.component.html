@@ -7,30 +7,31 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="e-profile">
-                                <div class="row">
-                                    <div class="col-12 col-sm-auto mb-3">
-                                        <div class="mx-auto" style="width: 140px;">
-                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                <img [src]="aboutMeList?.profilePhoto" height="140" width="140" style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
+                                <form class="form" action="" [formGroup]="updateAboutMeForm">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-3">
+                                            <div class="mx-auto" style="width: 140px;">
+                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                    <img [src]="aboutMeList?.profilePhoto" height="140" width="140" style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList?.fullname }}</h4>
+                                                <p class="mb-0">{{ aboutMeList?.profession }}</p>
+                                                <div class="mt-2">
+                                                    <!--<button class="btn btn-primary" type="button">
+                                                        <i class="fa fa-fw fa-camera"></i>
+                                                        <span>Change Photo</span>
+                                                    </button>-->
+                                                    <input type="file" formControlName="profilePhoto" (change)="onFileSelected($event)"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList?.fullname }}</h4>
-                                            <p class="mb-0">{{ aboutMeList?.profession }}</p>
-                                            <!--<div class="mt-2">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fa fa-fw fa-camera"></i>
-                                                    <span>Change Photo</span>
-                                                </button>
-                                            </div>-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-content pt-3">
-                                    <div class="tab-pane active">
-                                        <form class="form" action="" [formGroup]="updateAboutMeForm">
+                                    <div class="tab-content pt-3">
+                                        <div class="tab-pane active">
                                             <div class="row" [hidden]="true">
                                                 <div class="col">
                                                     <div class="form-group">
@@ -68,9 +69,9 @@
                                                     <button class="btn btn-primary" type="submit" (click)="updateAboutMe()">Guardar</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

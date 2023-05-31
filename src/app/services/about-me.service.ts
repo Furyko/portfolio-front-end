@@ -1,8 +1,9 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AboutMe } from '../models/AboutMe';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
+import { ImageUploadResponse } from '../interfaces/upload-images.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,16 @@ export class AboutMeService {
         return response.body
       })
     )
+  }
+
+  uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http.post(`https://api.imgbb.com/1/upload?key=${environment.imgbb_api_key}`, formData, {
+      observe: 'response'
+    }).pipe(
+      map((res: any) => res.body as ImageUploadResponse)
+    );
   }
 
   //Update aboutMe

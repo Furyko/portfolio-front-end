@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AboutMe } from 'src/app/models/AboutMe';
 import { AboutMeService } from 'src/app/services/about-me.service';
+import { ImageUploadResponse } from '../../../interfaces/upload-images.interface';
 
 @Component({
   selector: 'app-about-me-form',
@@ -14,14 +15,18 @@ import { AboutMeService } from 'src/app/services/about-me.service';
 export class AboutMeFormComponent {
   aboutMeList: AboutMe | null
   updateAboutMeForm: FormGroup
+  file: any
+  imageUrl: string
 
   constructor(private fb: FormBuilder, private eService: AboutMeService){
+    this.imageUrl = ''
     this.aboutMeList = new AboutMe()
     this.updateAboutMeForm = fb.group({
       idAboutMe: 1,
       fullname: new FormControl('', [Validators.required]),
       presentation: new FormControl('', [Validators.required]),
       profession: new FormControl('', [Validators.required]),
+      profilePhoto: new FormControl('', [Validators.required]),
     })
   }
 
@@ -49,10 +54,19 @@ export class AboutMeFormComponent {
       aboutMe.fullname = this.updateAboutMeForm.get('fullname')?.value
       aboutMe.presentation = this.updateAboutMeForm.get('presentation')?.value
       aboutMe.profession = this.updateAboutMeForm.get('profession')?.value
+      aboutMe.profilePhoto = this.imageUrl
       this.eService.updateAboutMe(aboutMe).subscribe(res => {
         this.getAboutMeListById(1)
       })
     }
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+    this.eService.uploadImage(this.file).subscribe((res: ImageUploadResponse) => {
+      this.imageUrl = res.data.image.url
+      this.getAboutMeListById(1);
+    });
   }
 
   setUpdateFormValues(aboutMe: AboutMe | null){
@@ -62,6 +76,7 @@ export class AboutMeFormComponent {
     this.updateAboutMeForm.get('fullname')?.setValue(aboutMe?.fullname)
     this.updateAboutMeForm.get('presentation')?.setValue(aboutMe?.presentation)
     this.updateAboutMeForm.get('profession')?.setValue(aboutMe?.profession)
+    this.updateAboutMeForm.get('profilePhoto')?.setValue(aboutMe?.profilePhoto)
   }
 
   ngOnInit(){
