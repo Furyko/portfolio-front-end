@@ -12,11 +12,11 @@ import { AboutMeService } from 'src/app/services/about-me.service';
   }
 })
 export class AboutMeFormComponent {
-  aboutMeList: Array<AboutMe>
+  aboutMeList: AboutMe | null
   updateAboutMeForm: FormGroup
 
   constructor(private fb: FormBuilder, private eService: AboutMeService){
-    this.aboutMeList = new Array<AboutMe>()
+    this.aboutMeList = new AboutMe()
     this.updateAboutMeForm = fb.group({
       idAboutMe: 1,
       fullname: new FormControl('', [Validators.required]),
@@ -25,9 +25,10 @@ export class AboutMeFormComponent {
     })
   }
 
-  //Get aboutMeList
-  getAboutMeList(){
-    this.eService.getAboutMeList().subscribe(res => {
+  //Get aboutMeList by id
+  getAboutMeListById(idAboutMe: number){
+    this.eService.getAboutMeListById(idAboutMe).subscribe(res => {
+      console.log('res',res)
       this.aboutMeList = res
     })
   }
@@ -35,7 +36,7 @@ export class AboutMeFormComponent {
   //Delete aboutMeList
   deleteAboutMe(idAboutMe: number){
     this.eService.deleteAboutMe(idAboutMe).subscribe(res => {
-      this.getAboutMeList()
+      this.getAboutMeListById(1)
     })
   }
 
@@ -44,26 +45,27 @@ export class AboutMeFormComponent {
     console.log(this.updateAboutMeForm)
     if(this.updateAboutMeForm.valid){
       let aboutMe = new AboutMe()
-      aboutMe.idAboutMe = this.updateAboutMeForm.get('idAboutMe')?.value
+      aboutMe.idAboutMe = 1
       aboutMe.fullname = this.updateAboutMeForm.get('fullname')?.value
       aboutMe.presentation = this.updateAboutMeForm.get('presentation')?.value
       aboutMe.profession = this.updateAboutMeForm.get('profession')?.value
       this.eService.updateAboutMe(aboutMe).subscribe(res => {
-        this.getAboutMeList()
+        this.getAboutMeListById(1)
       })
     }
   }
 
-  setUpdateFormValues(aboutMe: AboutMe){
+  setUpdateFormValues(aboutMe: AboutMe | null){
+    console.log({aboutMe})
     this.updateAboutMeForm.get('idAboutMe')?.disable()
-    this.updateAboutMeForm.get('idAboutMe')?.setValue(aboutMe.idAboutMe)
-    this.updateAboutMeForm.get('fullname')?.setValue(aboutMe.fullname)
-    this.updateAboutMeForm.get('presentation')?.setValue(aboutMe.presentation)
-    this.updateAboutMeForm.get('profession')?.setValue(aboutMe.profession)
+    this.updateAboutMeForm.get('idAboutMe')?.setValue(aboutMe?.idAboutMe)
+    this.updateAboutMeForm.get('fullname')?.setValue(aboutMe?.fullname)
+    this.updateAboutMeForm.get('presentation')?.setValue(aboutMe?.presentation)
+    this.updateAboutMeForm.get('profession')?.setValue(aboutMe?.profession)
   }
 
   ngOnInit(){
-    this.getAboutMeList()
-    this.setUpdateFormValues(this.aboutMeList[0])
+    this.getAboutMeListById(1)
+    this.setUpdateFormValues(this.aboutMeList)
   }
 }

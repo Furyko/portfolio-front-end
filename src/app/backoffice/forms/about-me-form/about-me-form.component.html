@@ -11,14 +11,14 @@
                                     <div class="col-12 col-sm-auto mb-3">
                                         <div class="mx-auto" style="width: 140px;">
                                             <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                                <img [src]="aboutMeList?.profilePhoto" height="140" width="140" style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                         <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList[0].fullname }}</h4>
-                                            <p class="mb-0">{{ aboutMeList[0].profession }}</p>
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList?.fullname }}</h4>
+                                            <p class="mb-0">{{ aboutMeList?.profession }}</p>
                                             <!--<div class="mt-2">
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fa fa-fw fa-camera"></i>
@@ -31,11 +31,11 @@
                                 <div class="tab-content pt-3">
                                     <div class="tab-pane active">
                                         <form class="form" action="" [formGroup]="updateAboutMeForm">
-                                            <div class="row">
+                                            <div class="row" [hidden]="true">
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>idAboutMe</label>
-                                                        <input class="form-control" type="text" name="idAboutMe" formControlName="idAboutMe" [placeholder]="aboutMeList[0].idAboutMe" [value]="aboutMeList[0].idAboutMe">
+                                                        <input class="form-control" type="text" name="idAboutMe" formControlName="idAboutMe" [placeholder]="aboutMeList?.idAboutMe" [value]="aboutMeList?.idAboutMe">
                                                     </div>
                                                 </div>
                                             </div>
@@ -43,7 +43,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>Full Name</label>
-                                                        <input class="form-control" type="text" name="name" formControlName="fullname" [placeholder]="aboutMeList[0].fullname" [value]="aboutMeList[0].fullname">
+                                                        <input class="form-control" type="text" name="fullname" formControlName="fullname" [placeholder]="aboutMeList?.fullname" [value]="aboutMeList?.fullname">
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>Profession</label>
-                                                        <input class="form-control" type="text" formControlName="profession" [placeholder]="aboutMeList[0].profession" [value]="aboutMeList[0].profession">
+                                                        <input class="form-control" type="text" formControlName="profession" [placeholder]="aboutMeList?.profession" [value]="aboutMeList?.profession">
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                                                 <div class="col mb-3">
                                                     <div class="form-group">
                                                         <label>Presentation</label>
-                                                        <textarea class="form-control" rows="5" formControlName="presentation" [placeholder]="aboutMeList[0].presentation">{{ aboutMeList[0].presentation }}</textarea>
+                                                        <textarea class="form-control" rows="5" formControlName="presentation" [placeholder]="aboutMeList?.presentation" [value]="aboutMeList?.presentation">{{ aboutMeList?.presentation }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

@@ -3,4 +3,5 @@ export class AboutMe{
     fullname?: string
     presentation?: string
     profession?: string
+    profilePhoto?: string
 }
