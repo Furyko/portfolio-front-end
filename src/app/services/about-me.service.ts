@@ -48,14 +48,14 @@ export class AboutMeService {
 
   //Update aboutMe
   updateAboutMe(aboutMe: AboutMe){
-    return this.http.post<AboutMe>(this.rutaGlobal + 'update', aboutMe, {
+    return this.http.put<AboutMe>(this.rutaGlobal + 'update', aboutMe, {
       observe: 'response'
     })
   }
 
   //Delete aboutMe
   deleteAboutMe(idAboutMe: number){
-    return this.http.post<Boolean>(this.rutaGlobal + idAboutMe, {
+    return this.http.delete<Boolean>(this.rutaGlobal + idAboutMe, {
       observe: 'response'
     })
   }

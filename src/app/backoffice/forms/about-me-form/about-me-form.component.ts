@@ -26,7 +26,7 @@ export class AboutMeFormComponent {
       fullname: new FormControl('', [Validators.required]),
       presentation: new FormControl('', [Validators.required]),
       profession: new FormControl('', [Validators.required]),
-      profilePhoto: new FormControl('', [Validators.required]),
+      profilePhoto: new FormControl('', []),
     })
   }
 
@@ -35,6 +35,7 @@ export class AboutMeFormComponent {
     this.eService.getAboutMeListById(idAboutMe).subscribe(res => {
       console.log('res',res)
       this.aboutMeList = res
+      this.setUpdateFormValues(this.aboutMeList)
     })
   }
 
@@ -54,7 +55,7 @@ export class AboutMeFormComponent {
       aboutMe.fullname = this.updateAboutMeForm.get('fullname')?.value
       aboutMe.presentation = this.updateAboutMeForm.get('presentation')?.value
       aboutMe.profession = this.updateAboutMeForm.get('profession')?.value
-      aboutMe.profilePhoto = this.imageUrl
+      aboutMe.profilePhoto = (this.imageUrl == '' ? this.aboutMeList?.profilePhoto : this.imageUrl)
       this.eService.updateAboutMe(aboutMe).subscribe(res => {
         this.getAboutMeListById(1)
       })
@@ -76,11 +77,9 @@ export class AboutMeFormComponent {
     this.updateAboutMeForm.get('fullname')?.setValue(aboutMe?.fullname)
     this.updateAboutMeForm.get('presentation')?.setValue(aboutMe?.presentation)
     this.updateAboutMeForm.get('profession')?.setValue(aboutMe?.profession)
-    this.updateAboutMeForm.get('profilePhoto')?.setValue(aboutMe?.profilePhoto)
   }
 
   ngOnInit(){
     this.getAboutMeListById(1)
-    this.setUpdateFormValues(this.aboutMeList)
   }
 }
