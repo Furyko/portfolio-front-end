@@ -8,10 +8,10 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Id Project</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Preview Img</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Carátula</th>
                         <th scope="col">URL Repo</th>
                         <th scope="col">URL Site</th>
                         <th scope="col"></th>
@@ -111,30 +111,64 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <form action="" [formGroup]="updateProjectForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Project" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
+                                    <div class="mb-3">
+                                        <label>Id del proyecto</label>
+                                        <input type="text" class="form-control" placeholder="Id del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Description" aria-label="idProject" aria-describedby="basic-addon1" formControlName="description">
+                                        <label class="is-required">Nombre del proyecto</label>
+                                        <input type="text" class="form-control" placeholder="Nombre del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
+                                            required minlength="2"
+                                        >
+                                        <div *ngIf="nameUpdate?.invalid && (nameUpdate?.dirty || nameUpdate?.touched)" class="alert alert-danger">
+                                            <div *ngIf="nameUpdate?.errors?.['required']">
+                                                El nombre del proyecto es requerido.
+                                            </div>
+                                            <div *ngIf="nameUpdate?.errors?.['minlength']">
+                                                El nombre del proyecto debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Project name" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name">
+                                        <label class="is-required">Descripción</label>
+                                        <textarea class="form-control" rows="2" formControlName="description" placeholder="Descripción" required minlength="2"></textarea>
+                                        <div *ngIf="descriptionUpdate?.invalid && (descriptionUpdate?.dirty || descriptionUpdate?.touched)" class="alert alert-danger">
+                                            <div *ngIf="descriptionUpdate?.errors?.['required']">
+                                                La descripción es requerida.
+                                            </div>
+                                            <div *ngIf="descriptionUpdate?.errors?.['minlength']">
+                                                La descripción debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Preview Img (https://image.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
+                                        <label>Carátula</label>
+                                        <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="URL Repo (https://repository.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo">
+                                        <label class="is-required">Repo URL</label>
+                                        <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
+                                            required minlength="2"
+                                        >
+                                        <div *ngIf="urlRepoUpdate?.invalid && (urlRepoUpdate?.dirty || urlRepoUpdate?.touched)" class="alert alert-danger">
+                                            <div *ngIf="urlRepoUpdate?.errors?.['required']">
+                                                La url del repositorio es requerida.
+                                            </div>
+                                            <div *ngIf="urlRepoUpdate?.errors?.['minlength']">
+                                                La url del repositorio debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="URL Site (https://site.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
+                                        <label>URL Site</label>
+                                        <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updateProject()">Save changes</button>
+                            <button type="button" class="btn btn-primary" (click)="updateProject()" [disabled]="updateProjectForm.valid ? false : true">Save changes</button>
                         </div>
                     </div>
                 </div>

@@ -17,22 +17,23 @@ export class ProjectsComponent {
     this.projects = new Array<Project>()
     this.projectForm = fb.group({
       idProject: new FormControl(''),
-      description: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       previewImg: new FormControl(''),
-      urlRepo: new FormControl('', [Validators.required]),
+      urlRepo: new FormControl('', [Validators.required, Validators.minLength(2)]),
       urlSite: new FormControl(''),
     })
     this.updateProjectForm = fb.group({
       idProject: new FormControl(''),
-      description: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       previewImg: new FormControl(''),
-      urlRepo: new FormControl('', [Validators.required]),
+      urlRepo: new FormControl('', [Validators.required, Validators.minLength(2)]),
       urlSite: new FormControl(''),
     })
   }
 
+  //Create form
   get name() {
     return this.projectForm.get('name');
   }
@@ -43,6 +44,19 @@ export class ProjectsComponent {
 
   get urlRepo() {
     return this.projectForm.get('urlRepo')!;
+  }
+
+  // Update form
+  get nameUpdate() {
+    return this.updateProjectForm.get('name');
+  }
+
+  get descriptionUpdate() {
+    return this.updateProjectForm.get('description')!;
+  }
+
+  get urlRepoUpdate() {
+    return this.updateProjectForm.get('urlRepo')!;
   }
 
   //Create project
