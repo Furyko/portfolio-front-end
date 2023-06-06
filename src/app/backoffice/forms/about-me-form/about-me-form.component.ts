@@ -17,17 +17,31 @@ export class AboutMeFormComponent {
   updateAboutMeForm: FormGroup
   file: any
   imageUrl: string
+  uploading: boolean
 
   constructor(private fb: FormBuilder, private eService: AboutMeService){
+    this.uploading = false
     this.imageUrl = ''
     this.aboutMeList = new AboutMe()
     this.updateAboutMeForm = fb.group({
       idAboutMe: 1,
-      fullname: new FormControl('', [Validators.required]),
-      presentation: new FormControl('', [Validators.required]),
-      profession: new FormControl('', [Validators.required]),
+      fullname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      presentation: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      profession: new FormControl('', [Validators.required, Validators.minLength(2)]),
       profilePhoto: new FormControl('', []),
     })
+  }
+
+  get fullname() {
+    return this.updateAboutMeForm.get('fullname');
+  }
+
+  get presentation() {
+    return this.updateAboutMeForm.get('presentation')!;
+  }
+
+  get profession() {
+    return this.updateAboutMeForm.get('profession')!;
   }
 
   //Get aboutMeList by id
@@ -63,8 +77,10 @@ export class AboutMeFormComponent {
   }
 
   onFileSelected(event: any) {
+    this.uploading = true
     this.file = event.target.files[0];
     this.eService.uploadImage(this.file).subscribe((res: ImageUploadResponse) => {
+      this.uploading = false
       this.imageUrl = res.data.image.url
       this.getAboutMeListById(1);
     });
