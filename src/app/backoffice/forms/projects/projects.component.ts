@@ -16,7 +16,7 @@ export class ProjectsComponent {
   constructor(private fb: FormBuilder, private pService: ProjectService){
     this.projects = new Array<Project>()
     this.projectForm = fb.group({
-      idProject: new FormControl('', [Validators.required]),
+      idProject: new FormControl(''),
       description: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       previewImg: new FormControl(''),
@@ -24,13 +24,25 @@ export class ProjectsComponent {
       urlSite: new FormControl(''),
     })
     this.updateProjectForm = fb.group({
-      idProject: new FormControl('', [Validators.required]),
+      idProject: new FormControl(''),
       description: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       previewImg: new FormControl(''),
       urlRepo: new FormControl('', [Validators.required]),
       urlSite: new FormControl(''),
     })
+  }
+
+  get name() {
+    return this.projectForm.get('name');
+  }
+
+  get description() {
+    return this.projectForm.get('description')!;
+  }
+
+  get urlRepo() {
+    return this.projectForm.get('urlRepo')!;
   }
 
   //Create project

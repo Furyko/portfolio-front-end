@@ -42,30 +42,60 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <form action="" [formGroup]="projectForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Project" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
+                                    <div class="mb-3">
+                                        <label>Nombre del proyecto</label>
+                                        <input type="text" class="form-control" placeholder="Nombre" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
+                                            required minlength="2"
+                                        >
+                                        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+                                            <div *ngIf="name?.errors?.['required']">
+                                                El nombre es requerido.
+                                            </div>
+                                            <div *ngIf="name?.errors?.['minlength']">
+                                                El nombre debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Description" aria-label="idProject" aria-describedby="basic-addon1" formControlName="description">
+                                        <label>Descripción</label>
+                                        <textarea class="form-control" rows="2" placeholder="Descripción" formControlName="description" required minlength="2"></textarea>
+                                        <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="alert alert-danger">
+                                            <div *ngIf="description?.errors?.['required']">
+                                                La descripción es requerida.
+                                            </div>
+                                            <div *ngIf="description?.errors?.['minlength']">
+                                                La descripción debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Project name" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name">
+                                        <label>Carátula</label>
+                                        <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Preview Img (https://image.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
+                                        <label>Repo URL</label>
+                                        <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
+                                            required minlength="2"
+                                        >
+                                        <div *ngIf="urlRepo?.invalid && (urlRepo?.dirty || urlRepo?.touched)" class="alert alert-danger">
+                                            <div *ngIf="urlRepo?.errors?.['required']">
+                                                La url del repositorio es requerida.
+                                            </div>
+                                            <div *ngIf="urlRepo?.errors?.['minlength']">
+                                                La url del repositorio debe contener al menos 2 caracteres.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="URL Repo (https://repository.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="URL Site (https://site.url/)" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
+                                        <label>Pagina URL</label>
+                                        <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="createProject()">Save changes</button>
+                            <button type="button" class="btn btn-primary" (click)="createProject()" [disabled]="projectForm.valid ? false : true">Save changes</button>
                         </div>
                     </div>
                 </div>
