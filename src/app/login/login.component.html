@@ -48,8 +48,13 @@
                                             <input type="checkbox" name="remember" id="remember" class="form-check-input">
                                             <label for="remember" class="form-check-label">Remember Me</label>
                                         </div>-->
-                                        <button type="submit" class="btn btn-primary ms-auto">
-                                            Login
+                                        <button type="submit" class="btn btn-primary ms-auto" [disabled]="loginForm.valid ? false : true">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="spinner-border text-light text-center me-2" role="status" *ngIf="loading">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                                <span>Login</span>
+                                            </div>
                                         </button>
                                     </div>
                                 </form>

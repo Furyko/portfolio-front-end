@@ -13,6 +13,7 @@ export class LoginComponent {
   user: User = new User();
   loginForm: FormGroup
   error: Boolean
+  loading: Boolean
 
   constructor(private fb: FormBuilder, private userLoginService: UserLoginService, private router: Router) {
     this.loginForm = fb.group({
@@ -20,6 +21,7 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required])
     })
     this.error = false
+    this.loading = false
   }
 
   // Login validation
@@ -34,15 +36,18 @@ export class LoginComponent {
 
   userLogin(){
     if(this.loginForm.valid){
+      this.loading = true
       let user = new User()
       user.userId = this.loginForm.get('userId')?.value
       user.password = this.loginForm.get('password')?.value
       this.userLoginService.userLogin(this.user).subscribe(res => {
+        this.loading = false
         sessionStorage.setItem('userId', `${this.user.userId}`);
         sessionStorage.setItem('password', `${this.user.password}`);
         this.router.navigate(['/backoffice']);
       }, error => {
         this.error = true
+        this.loading = false
       })
     }
   }
