@@ -86,10 +86,10 @@
                                                         <textarea class="form-control" rows="5" formControlName="presentation" [placeholder]="aboutMeList?.presentation" [value]="aboutMeList?.presentation" required minlength="2">{{ aboutMeList?.presentation }}</textarea>
                                                         <div *ngIf="presentation?.invalid && (presentation?.dirty || presentation?.touched)" class="alert alert-danger">
                                                             <div *ngIf="presentation?.errors?.['required']">
-                                                                La profesión es requerida.
+                                                                La presentación es requerida.
                                                             </div>
                                                             <div *ngIf="presentation?.errors?.['minlength']">
-                                                                La profesión debe contener al menos 2 caracteres.
+                                                                La presentación debe contener al menos 2 caracteres.
                                                             </div>
                                                         </div>
                                                     </div>
