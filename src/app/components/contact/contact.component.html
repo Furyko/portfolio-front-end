@@ -1,9 +1,16 @@
 <div class="info-title" id="contactar">
     <h4 class="title">Contacto</h4>
-    <ul>
+    <ul *ngIf="!loading; else elseContact">
         <li *ngFor="let i of contacts">{{ i.name }}: 
             <a *ngIf="i.url != '' else elseBlock" [href]="i.url" target="_blank">{{ i.data }}</a>
             <ng-template #elseBlock>{{ i.data }}</ng-template>
         </li>
     </ul>
+    <ng-template #elseContact class="mt-3">
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
 </div>

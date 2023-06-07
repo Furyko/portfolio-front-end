@@ -9,15 +9,19 @@ import { KnowledgeService } from 'src/app/services/knowledge.service';
 })
 export class KnowledgeComponent {
   knowledges: Array<Knowledge>
+  loading: Boolean
 
   constructor(private pService: KnowledgeService){
     this.knowledges = new Array<Knowledge>()
+    this.loading = false
   }
 
   //Get knowledges
   getKnowledges(){
+    this.loading = true
     this.pService.getKnowledges().subscribe(res => {
       this.knowledges = res
+      this.loading = false
     })
   }
 

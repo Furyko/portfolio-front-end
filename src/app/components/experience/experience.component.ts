@@ -9,15 +9,19 @@ import { ExperienceService } from 'src/app/services/experience.service';
 })
 export class ExperienceComponent {
   experiences: Array<Experience>
+  loading: Boolean
 
   constructor(private eService: ExperienceService){
+    this.loading = false
     this.experiences = new Array<Experience>()
   }
 
   //Get experiences
   getExperiences(){
+    this.loading = true
     this.eService.getExperiences().subscribe(res => {
       this.experiences = res
+      this.loading = false
     })
   }
 

@@ -1,9 +1,16 @@
 <div class="info-title" id="estudios">
     <h4 class="title">Estudios</h4>
-    <ul>
+    <ul *ngIf="!loading; else elseStudy">
         <div *ngFor="let i of studies">
             <li><b>{{ i.title }}</b></li>
             <p>{{ i.instituteName }}</p>
         </div>
     </ul>
+    <ng-template #elseStudy>
+        <div class="text-center mt-3">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
 </div>
