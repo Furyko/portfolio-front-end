@@ -9,15 +9,19 @@ import { AboutMeService } from 'src/app/services/about-me.service';
 })
 export class AboutMeComponent {
   aboutMeList: Array<AboutMe>
+  loading: Boolean
 
   constructor(private pService: AboutMeService){
+    this.loading = false
     this.aboutMeList = new Array<AboutMe>()
   }
 
   //Get about me list
   getAboutMeList(){
+    this.loading = true
     this.pService.getAboutMeList().subscribe(res => {
       this.aboutMeList = res
+      this.loading = false
     })
   }
 

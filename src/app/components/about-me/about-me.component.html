@@ -2,8 +2,18 @@
     <aside class="aside section mb-4">
       <div class="card shadow-sm rounded">
         <div class="content pt-2 ps-4 pe-4 pb-2">
-          <div class="item text-center">
-            <img class="profile-image img-fluid rounded-circle mb-2 shadow-sm" [src]="aboutMeList[0].profilePhoto" width="180" height="180">
+          <div class="item text-center" *ngIf="loading">
+            <div class="profile-image img-fluid rounded-circle mb-2 shadow-sm" width="180px" height="180px">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+            <h4>Cargando...</h4>
+          </div>
+          <div class="item text-center" *ngIf="!loading">
+            <img class="profile-image img-fluid rounded-circle mb-2 shadow-sm" [src]="aboutMeList[0].profilePhoto" width="180" height="180" *ngIf="!loading">
             <h4>{{ aboutMeList[0].fullname }}</h4>
             <h6>{{ aboutMeList[0].profession }}</h6>
           </div>
@@ -20,7 +30,12 @@
           <div class="info-container">
             <div class="info-title" id="presentacion">
               <h4 class="title">Presentación</h4>
-              <p>{{ aboutMeList[0].presentation }}</p>
+              <div class="d-flex justify-content-center mt-3" *ngIf="loading">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <p *ngIf="!loading">{{ aboutMeList[0].presentation }}</p>
             </div>
             <app-study></app-study>
             <app-knowledge></app-knowledge>
