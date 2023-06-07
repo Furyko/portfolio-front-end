@@ -5,24 +5,26 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                 Crear Estudio
             </button>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Id Study</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Institute Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let i of studies">
-                        <th scope="row">{{ i.idStudy }}</th>
-                        <td>{{ i.title }}</td>
-                        <td>{{ i.instituteName }}</td>
-                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
-                        <td><button type="button" class="btn btn-primary" (click)="deleteStudy(i.idStudy!)">Delete</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id Study</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Institute Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of studies">
+                            <th scope="row">{{ i.idStudy }}</th>
+                            <td>{{ i.title }}</td>
+                            <td>{{ i.instituteName }}</td>
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                            <td><button type="button" class="btn btn-primary" (click)="deleteStudy(i.idStudy!)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <!-- Create Project Modal -->
             <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
