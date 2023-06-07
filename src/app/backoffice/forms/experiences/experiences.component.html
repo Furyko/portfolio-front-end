@@ -1,90 +1,94 @@
 <!--Right side-->
-<div class="right col-lg-8 col-12">
-    <section class="section mb-4">
-        <div class="card shadow-sm rounded p-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                Crear conocimiento
-            </button>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id Experience</th>
-                            <th scope="col">Project Name</th>
-                            <th scope="col">description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let i of experiences">
-                            <th scope="row">{{ i.idExperience }}</th>
-                            <td>{{ i.projectName }}</td>
-                            <td>{{ i.description }}</td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
-                            <td><button type="button" class="btn btn-primary" (click)="deleteExperience(i.idExperience!)">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Create Project Modal -->
-            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo conocimiento</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="experienceForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Experience" aria-label="idExperience" aria-describedby="basic-addon1" formControlName="idExperience">
+<div class="container">
+    <div class="row flex-lg-nowrap">
+        <div class="col mb-3">
+            <div class="card">
+                <div class="card shadow-sm rounded p-4">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        Crear conocimiento
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id Experience</th>
+                                    <th scope="col">Project Name</th>
+                                    <th scope="col">description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of experiences">
+                                    <th scope="row">{{ i.idExperience }}</th>
+                                    <td>{{ i.projectName }}</td>
+                                    <td>{{ i.description }}</td>
+                                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteExperience(i.idExperience!)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Create Project Modal -->
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo conocimiento</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="experienceForm">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="Id Experience" aria-label="idExperience" aria-describedby="basic-addon1" formControlName="idExperience">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Project Name" aria-label="projectName" aria-describedby="basic-addon1" formControlName="projectName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Project Name" aria-label="projectName" aria-describedby="basic-addon1" formControlName="projectName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="createExperience()">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="createExperience()">Save changes</button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Update Project Modal -->
-            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar conocimiento existente</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="updateExperienceForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idExperience" aria-describedby="basic-addon1" formControlName="idExperience">
+                    <!-- Update Project Modal -->
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar conocimiento existente</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="updateExperienceForm">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idExperience" aria-describedby="basic-addon1" formControlName="idExperience">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Project Name" aria-label="projectName" aria-describedby="basic-addon1" formControlName="projectName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Project Name" aria-label="projectName" aria-describedby="basic-addon1" formControlName="projectName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="updateExperience()">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updateExperience()">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>

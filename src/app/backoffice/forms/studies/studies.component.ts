@@ -6,7 +6,10 @@ import { StudyService } from 'src/app/services/study.service';
 @Component({
   selector: 'app-studies',
   templateUrl: './studies.component.html',
-  styleUrls: ['./studies.component.css']
+  styleUrls: ['./studies.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class StudiesComponent {
   studies: Array<Study>

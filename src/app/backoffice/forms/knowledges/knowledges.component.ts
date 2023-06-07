@@ -6,7 +6,10 @@ import { KnowledgeService } from 'src/app/services/knowledge.service';
 @Component({
   selector: 'app-knowledges',
   templateUrl: './knowledges.component.html',
-  styleUrls: ['./knowledges.component.css']
+  styleUrls: ['./knowledges.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class KnowledgesComponent {
   knowledges: Array<Knowledge>

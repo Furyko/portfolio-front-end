@@ -1,180 +1,184 @@
 <!--Right side-->
-<div class="right col-lg-8 col-12">
-    <section class="section mb-4">
-        <div class="card shadow-sm rounded p-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                Crear proyecto
-            </button>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Carátula</th>
-                            <th scope="col">URL Repo</th>
-                            <th scope="col">URL Site</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let i of projects">
-                            <th scope="row">{{ i.idProject }}</th>
-                            <td>{{ i.name }}</td>
-                            <td>{{ i.description }}</td>
-                            <td>{{ i.previewImg }}</td>
-                            <td>{{ i.urlRepo }}</td>
-                            <td>{{ i.urlSite }}</td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
-                            <td><button type="button" class="btn btn-primary" (click)="deleteProject(i.idProject!)">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Create Project Modal -->
-            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo proyecto</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="projectForm">
-                                    <div class="mb-3">
-                                        <label>Nombre del proyecto</label>
-                                        <input type="text" class="form-control" placeholder="Nombre" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
-                                            required minlength="2"
-                                        >
-                                        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
-                                            <div *ngIf="name?.errors?.['required']">
-                                                El nombre es requerido.
+<div class="container">
+    <div class="row flex-lg-nowrap">
+        <div class="col mb-3">
+            <div class="card">
+                <div class="card shadow-sm rounded p-4">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        Crear proyecto
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Carátula</th>
+                                    <th scope="col">URL Repo</th>
+                                    <th scope="col">URL Site</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of projects">
+                                    <th scope="row">{{ i.idProject }}</th>
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.description }}</td>
+                                    <td>{{ i.previewImg }}</td>
+                                    <td>{{ i.urlRepo }}</td>
+                                    <td>{{ i.urlSite }}</td>
+                                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteProject(i.idProject!)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Create Project Modal -->
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo proyecto</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="projectForm">
+                                            <div class="mb-3">
+                                                <label>Nombre del proyecto</label>
+                                                <input type="text" class="form-control" placeholder="Nombre" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="name?.errors?.['required']">
+                                                        El nombre es requerido.
+                                                    </div>
+                                                    <div *ngIf="name?.errors?.['minlength']">
+                                                        El nombre debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div *ngIf="name?.errors?.['minlength']">
-                                                El nombre debe contener al menos 2 caracteres.
+                                            <div class="mb-3">
+                                                <label>Descripción</label>
+                                                <textarea class="form-control" rows="2" placeholder="Descripción" formControlName="description" required minlength="2"></textarea>
+                                                <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="description?.errors?.['required']">
+                                                        La descripción es requerida.
+                                                    </div>
+                                                    <div *ngIf="description?.errors?.['minlength']">
+                                                        La descripción debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="mb-3">
+                                                <label>Carátula</label>
+                                                <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Repo URL</label>
+                                                <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="urlRepo?.invalid && (urlRepo?.dirty || urlRepo?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="urlRepo?.errors?.['required']">
+                                                        La url del repositorio es requerida.
+                                                    </div>
+                                                    <div *ngIf="urlRepo?.errors?.['minlength']">
+                                                        La url del repositorio debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Pagina URL</label>
+                                                <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Descripción</label>
-                                        <textarea class="form-control" rows="2" placeholder="Descripción" formControlName="description" required minlength="2"></textarea>
-                                        <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="alert alert-danger">
-                                            <div *ngIf="description?.errors?.['required']">
-                                                La descripción es requerida.
-                                            </div>
-                                            <div *ngIf="description?.errors?.['minlength']">
-                                                La descripción debe contener al menos 2 caracteres.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Carátula</label>
-                                        <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Repo URL</label>
-                                        <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
-                                            required minlength="2"
-                                        >
-                                        <div *ngIf="urlRepo?.invalid && (urlRepo?.dirty || urlRepo?.touched)" class="alert alert-danger">
-                                            <div *ngIf="urlRepo?.errors?.['required']">
-                                                La url del repositorio es requerida.
-                                            </div>
-                                            <div *ngIf="urlRepo?.errors?.['minlength']">
-                                                La url del repositorio debe contener al menos 2 caracteres.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Pagina URL</label>
-                                        <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="createProject()" [disabled]="projectForm.valid ? false : true">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="createProject()" [disabled]="projectForm.valid ? false : true">Save changes</button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Update Project Modal -->
-            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar proyecto existente</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="updateProjectForm">
-                                    <div class="mb-3">
-                                        <label>Id del proyecto</label>
-                                        <input type="text" class="form-control" placeholder="Id del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="is-required">Nombre del proyecto</label>
-                                        <input type="text" class="form-control" placeholder="Nombre del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
-                                            required minlength="2"
-                                        >
-                                        <div *ngIf="nameUpdate?.invalid && (nameUpdate?.dirty || nameUpdate?.touched)" class="alert alert-danger">
-                                            <div *ngIf="nameUpdate?.errors?.['required']">
-                                                El nombre del proyecto es requerido.
+                    <!-- Update Project Modal -->
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar proyecto existente</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="updateProjectForm">
+                                            <div class="mb-3">
+                                                <label>Id del proyecto</label>
+                                                <input type="text" class="form-control" placeholder="Id del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="idProject">
                                             </div>
-                                            <div *ngIf="nameUpdate?.errors?.['minlength']">
-                                                El nombre del proyecto debe contener al menos 2 caracteres.
+                                            <div class="mb-3">
+                                                <label class="is-required">Nombre del proyecto</label>
+                                                <input type="text" class="form-control" placeholder="Nombre del proyecto" aria-label="idProject" aria-describedby="basic-addon1" formControlName="name"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="nameUpdate?.invalid && (nameUpdate?.dirty || nameUpdate?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="nameUpdate?.errors?.['required']">
+                                                        El nombre del proyecto es requerido.
+                                                    </div>
+                                                    <div *ngIf="nameUpdate?.errors?.['minlength']">
+                                                        El nombre del proyecto debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="is-required">Descripción</label>
-                                        <textarea class="form-control" rows="2" formControlName="description" placeholder="Descripción" required minlength="2"></textarea>
-                                        <div *ngIf="descriptionUpdate?.invalid && (descriptionUpdate?.dirty || descriptionUpdate?.touched)" class="alert alert-danger">
-                                            <div *ngIf="descriptionUpdate?.errors?.['required']">
-                                                La descripción es requerida.
+                                            <div class="mb-3">
+                                                <label class="is-required">Descripción</label>
+                                                <textarea class="form-control" rows="2" formControlName="description" placeholder="Descripción" required minlength="2"></textarea>
+                                                <div *ngIf="descriptionUpdate?.invalid && (descriptionUpdate?.dirty || descriptionUpdate?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="descriptionUpdate?.errors?.['required']">
+                                                        La descripción es requerida.
+                                                    </div>
+                                                    <div *ngIf="descriptionUpdate?.errors?.['minlength']">
+                                                        La descripción debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div *ngIf="descriptionUpdate?.errors?.['minlength']">
-                                                La descripción debe contener al menos 2 caracteres.
+                                            <div class="mb-3">
+                                                <label>Carátula</label>
+                                                <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Carátula</label>
-                                        <input type="text" class="form-control" placeholder="https://image.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="previewImg">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="is-required">Repo URL</label>
-                                        <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
-                                            required minlength="2"
-                                        >
-                                        <div *ngIf="urlRepoUpdate?.invalid && (urlRepoUpdate?.dirty || urlRepoUpdate?.touched)" class="alert alert-danger">
-                                            <div *ngIf="urlRepoUpdate?.errors?.['required']">
-                                                La url del repositorio es requerida.
+                                            <div class="mb-3">
+                                                <label class="is-required">Repo URL</label>
+                                                <input type="text" class="form-control" placeholder="https://repository.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlRepo"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="urlRepoUpdate?.invalid && (urlRepoUpdate?.dirty || urlRepoUpdate?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="urlRepoUpdate?.errors?.['required']">
+                                                        La url del repositorio es requerida.
+                                                    </div>
+                                                    <div *ngIf="urlRepoUpdate?.errors?.['minlength']">
+                                                        La url del repositorio debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div *ngIf="urlRepoUpdate?.errors?.['minlength']">
-                                                La url del repositorio debe contener al menos 2 caracteres.
+                                            <div class="mb-3">
+                                                <label>URL Site</label>
+                                                <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>URL Site</label>
-                                        <input type="text" class="form-control" placeholder="https://site.url/" aria-label="idProject" aria-describedby="basic-addon1" formControlName="urlSite">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="updateProject()" [disabled]="updateProjectForm.valid ? false : true">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updateProject()" [disabled]="updateProjectForm.valid ? false : true">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>

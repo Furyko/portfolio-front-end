@@ -1,110 +1,106 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row flex-lg-nowrap">
-        <div class="col">
-            <div class="row">
-                <div class="col mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="e-profile">
-                                <form class="form" action="" [formGroup]="updateAboutMeForm">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto mb-3">
-                                            <div class="mx-auto" style="width: 140px;">
-                                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                    <img [src]="aboutMeList?.profilePhoto" height="140" width="140" style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
-                                                </div>
-                                            </div>
+        <div class="col mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="e-profile">
+                        <form class="form" action="" [formGroup]="updateAboutMeForm">
+                            <div class="row">
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="mx-auto" style="width: 140px;">
+                                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                            <img [src]="aboutMeList?.profilePhoto" height="140" width="140" style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
                                         </div>
-                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList?.fullname }}</h4>
-                                                <p class="mb-0">{{ aboutMeList?.profession }}</p>
-                                                <div class="mt-2">
-                                                    <!--<button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-fw fa-camera"></i>
-                                                        <span>Change Photo</span>
-                                                    </button>-->
-                                                    <input type="file" formControlName="profilePhoto" (change)="onFileSelected($event)"/>
-                                                    <div class="spinner-border text-primary" role="status" *ngIf="uploading">
-                                                        <span class="visually-hidden">Loading...</span>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ aboutMeList?.fullname }}</h4>
+                                        <p class="mb-0">{{ aboutMeList?.profession }}</p>
+                                        <div class="mt-2">
+                                            <!--<button class="btn btn-primary" type="button">
+                                                <i class="fa fa-fw fa-camera"></i>
+                                                <span>Change Photo</span>
+                                            </button>-->
+                                            <input type="file" formControlName="profilePhoto" (change)="onFileSelected($event)"/>
+                                            <div class="spinner-border text-primary" role="status" *ngIf="uploading">
+                                                <span class="visually-hidden">Loading...</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-content pt-3">
-                                        <div class="tab-pane active">
-                                            <div class="row" [hidden]="true">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>idAboutMe</label>
-                                                        <input class="form-control" type="text" name="idAboutMe" formControlName="idAboutMe" [placeholder]="aboutMeList?.idAboutMe" [value]="aboutMeList?.idAboutMe">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>Full Name</label>
-                                                        <input class="form-control" type="text" name="fullname" formControlName="fullname" [placeholder]="aboutMeList?.fullname" [value]="aboutMeList?.fullname"
-                                                            required minlength="2"
-                                                        >
-                                                        <div *ngIf="fullname?.invalid && (fullname?.dirty || fullname?.touched)" class="alert alert-danger">
-                                                            <div *ngIf="fullname?.errors?.['required']">
-                                                                El nombre es requerido.
-                                                            </div>
-                                                            <div *ngIf="fullname?.errors?.['minlength']">
-                                                                El nombre debe contener al menos 2 caracteres.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>Profession</label>
-                                                        <input class="form-control" type="text" formControlName="profession" [placeholder]="aboutMeList?.profession" [value]="aboutMeList?.profession"
-                                                            required minlength="2"
-                                                        >
-                                                        <div *ngIf="profession?.invalid && (profession?.dirty || profession?.touched)" class="alert alert-danger">
-                                                            <div *ngIf="profession?.errors?.['required']">
-                                                                La profesión es requerida.
-                                                            </div>
-                                                            <div *ngIf="profession?.errors?.['minlength']">
-                                                                La profesión debe contener al menos 2 caracteres.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col mb-3">
-                                                    <div class="form-group">
-                                                        <label>Presentation</label>
-                                                        <textarea class="form-control" rows="5" formControlName="presentation" [placeholder]="aboutMeList?.presentation" [value]="aboutMeList?.presentation" required minlength="2">{{ aboutMeList?.presentation }}</textarea>
-                                                        <div *ngIf="presentation?.invalid && (presentation?.dirty || presentation?.touched)" class="alert alert-danger">
-                                                            <div *ngIf="presentation?.errors?.['required']">
-                                                                La presentación es requerida.
-                                                            </div>
-                                                            <div *ngIf="presentation?.errors?.['minlength']">
-                                                                La presentación debe contener al menos 2 caracteres.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex justify-content-end">
-                                                    <button class="btn btn-primary" type="submit" (click)="updateAboutMe()" [disabled]="updateAboutMeForm.valid ? false : true">Guardar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                            <div class="tab-content pt-3">
+                                <div class="tab-pane active">
+                                    <div class="row" [hidden]="true">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>idAboutMe</label>
+                                                <input class="form-control" type="text" name="idAboutMe" formControlName="idAboutMe" [placeholder]="aboutMeList?.idAboutMe" [value]="aboutMeList?.idAboutMe">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Full Name</label>
+                                                <input class="form-control" type="text" name="fullname" formControlName="fullname" [placeholder]="aboutMeList?.fullname" [value]="aboutMeList?.fullname"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="fullname?.invalid && (fullname?.dirty || fullname?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="fullname?.errors?.['required']">
+                                                        El nombre es requerido.
+                                                    </div>
+                                                    <div *ngIf="fullname?.errors?.['minlength']">
+                                                        El nombre debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Profession</label>
+                                                <input class="form-control" type="text" formControlName="profession" [placeholder]="aboutMeList?.profession" [value]="aboutMeList?.profession"
+                                                    required minlength="2"
+                                                >
+                                                <div *ngIf="profession?.invalid && (profession?.dirty || profession?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="profession?.errors?.['required']">
+                                                        La profesión es requerida.
+                                                    </div>
+                                                    <div *ngIf="profession?.errors?.['minlength']">
+                                                        La profesión debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <div class="form-group">
+                                                <label>Presentation</label>
+                                                <textarea class="form-control" rows="5" formControlName="presentation" [placeholder]="aboutMeList?.presentation" [value]="aboutMeList?.presentation" required minlength="2">{{ aboutMeList?.presentation }}</textarea>
+                                                <div *ngIf="presentation?.invalid && (presentation?.dirty || presentation?.touched)" class="alert alert-danger">
+                                                    <div *ngIf="presentation?.errors?.['required']">
+                                                        La presentación es requerida.
+                                                    </div>
+                                                    <div *ngIf="presentation?.errors?.['minlength']">
+                                                        La presentación debe contener al menos 2 caracteres.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit" (click)="updateAboutMe()" [disabled]="updateAboutMeForm.valid ? false : true">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,10 @@ import { ExperienceService } from 'src/app/services/experience.service';
 @Component({
   selector: 'app-experiences',
   templateUrl: './experiences.component.html',
-  styleUrls: ['./experiences.component.css']
+  styleUrls: ['./experiences.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class ExperiencesComponent {
   experiences: Array<Experience>

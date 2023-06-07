@@ -6,7 +6,10 @@ import { ProjectService } from 'src/app/services/project.service';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class ProjectsComponent {
   projects: Array<Project>

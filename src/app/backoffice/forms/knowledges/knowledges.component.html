@@ -1,90 +1,94 @@
 <!--Right side-->
-<div class="right col-lg-8 col-12">
-    <section class="section mb-4">
-        <div class="card shadow-sm rounded p-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                Crear conocimiento
-            </button>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id Knowledge</th>
-                            <th scope="col">area</th>
-                            <th scope="col">technologies</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let i of knowledges">
-                            <th scope="row">{{ i.idKnowledge }}</th>
-                            <td>{{ i.area }}</td>
-                            <td>{{ i.technologies }}</td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
-                            <td><button type="button" class="btn btn-primary" (click)="deleteKnowledge(i.idKnowledge!)">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Create Project Modal -->
-            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo conocimiento</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="knowledgeForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idKnowledge" aria-describedby="basic-addon1" formControlName="idKnowledge">
+<div class="container">
+    <div class="row flex-lg-nowrap">
+        <div class="col mb-3">
+            <div class="card">
+                <div class="card shadow-sm rounded p-4">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        Crear conocimiento
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id Knowledge</th>
+                                    <th scope="col">area</th>
+                                    <th scope="col">technologies</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of knowledges">
+                                    <th scope="row">{{ i.idKnowledge }}</th>
+                                    <td>{{ i.area }}</td>
+                                    <td>{{ i.technologies }}</td>
+                                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setUpdateFormValues(i)">Update</button></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteKnowledge(i.idKnowledge!)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Create Project Modal -->
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="createModalLabel">Crear nuevo conocimiento</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="knowledgeForm">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idKnowledge" aria-describedby="basic-addon1" formControlName="idKnowledge">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Area" aria-label="area" aria-describedby="basic-addon1" formControlName="area">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Technologies list" aria-label="technologies" aria-describedby="basic-addon1" formControlName="technologies">
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Area" aria-label="area" aria-describedby="basic-addon1" formControlName="area">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Technologies list" aria-label="technologies" aria-describedby="basic-addon1" formControlName="technologies">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="createKnowledge()">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="createKnowledge()">Save changes</button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Update Project Modal -->
-            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar conocimiento existente</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form action="" [formGroup]="updateKnowledgeForm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idKnowledge" aria-describedby="basic-addon1" formControlName="idKnowledge">
+                    <!-- Update Project Modal -->
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="updateModalLabel">Actualizar conocimiento existente</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form action="" [formGroup]="updateKnowledgeForm">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="Id Knowledge" aria-label="idKnowledge" aria-describedby="basic-addon1" formControlName="idKnowledge">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Area" aria-label="area" aria-describedby="basic-addon1" formControlName="area">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Technologies list" aria-label="technologies" aria-describedby="basic-addon1" formControlName="technologies">
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Area" aria-label="area" aria-describedby="basic-addon1" formControlName="area">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Technologies list" aria-label="technologies" aria-describedby="basic-addon1" formControlName="technologies">
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" (click)="updateKnowledge()">Save changes</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updateKnowledge()">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>

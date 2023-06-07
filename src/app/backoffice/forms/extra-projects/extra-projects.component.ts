@@ -6,7 +6,10 @@ import { ExtraProjectService } from 'src/app/services/extra-project.service';
 @Component({
   selector: 'app-extra-projects',
   templateUrl: './extra-projects.component.html',
-  styleUrls: ['./extra-projects.component.css']
+  styleUrls: ['./extra-projects.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class ExtraProjectsComponent {
   projects: Array<ExtraProject>

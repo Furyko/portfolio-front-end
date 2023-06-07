@@ -6,7 +6,10 @@ import { ContactService } from 'src/app/services/contact.service';
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css']
+  styleUrls: ['./contacts.component.css'],
+  host: {
+    class: "col"
+  }
 })
 export class ContactsComponent {
   contacts: Array<Contact>
