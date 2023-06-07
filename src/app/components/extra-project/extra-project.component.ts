@@ -9,15 +9,19 @@ import { ExtraProjectService } from 'src/app/services/extra-project.service';
 })
 export class ExtraProjectComponent {
   projects: Array<ExtraProject>
+  loading: Boolean
 
   constructor(private pService: ExtraProjectService){
     this.projects = new Array<ExtraProject>()
+    this.loading = false
   }
 
   //Get projects
   getExtraProjects(){
+    this.loading = true
     this.pService.getExtraProjects().subscribe(res => {
       this.projects = res
+      this.loading = false
     })
   }
 
